@@ -11,11 +11,12 @@ class LanguagesInfoFragment : Fragment() {
 
     private var _binding: FragmentLanguagesInfoBinding? = null
     private val binding get() = _binding!!
+    lateinit var repoName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+            repoName = arguments?.getString("repoName").toString()
         }
     }
 
@@ -33,6 +34,8 @@ class LanguagesInfoFragment : Fragment() {
         _binding?.apply {
             languagesInfoFragment = this@LanguagesInfoFragment
         }
+
+        binding.repoName.text = repoName
     }
 
 }

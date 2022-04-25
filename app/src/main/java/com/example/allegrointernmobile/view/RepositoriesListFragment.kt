@@ -1,20 +1,27 @@
 package com.example.allegrointernmobile.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.allegrointernmobile.R
+import com.example.allegrointernmobile.adapter.ReposItemClickListener
+import com.example.allegrointernmobile.adapter.RepositoryListAdapter
 import com.example.allegrointernmobile.databinding.FragmentRepositoriesListBinding
+import com.example.allegrointernmobile.model.RepositoryInfo
 import com.example.allegrointernmobile.viewmodel.SharedViewModel
 
-class RepositoriesListFragment : Fragment() {
+class RepositoriesListFragment : Fragment(), ReposItemClickListener {
 
     private var _binding: FragmentRepositoriesListBinding? = null
     private val binding get() = _binding!!
     private val mSharedViewModel: SharedViewModel by activityViewModels()
+    lateinit var mAdapter : RepositoryListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +35,13 @@ class RepositoriesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRepositoriesListBinding.inflate(inflater, container, false)
+
+        mAdapter = RepositoryListAdapter(this)
+
+        binding.lifecycleOwner = this
+        binding.sharedViewModel = mSharedViewModel
+        binding.repositoriesRecyclerview.adapter = mAdapter
+
         return binding.root
     }
 
@@ -38,12 +52,12 @@ class RepositoriesListFragment : Fragment() {
             repositoriesListFragment = this@RepositoriesListFragment
         }
 
-        binding.username.text = mSharedViewModel.username
-        binding.button.text = mSharedViewModel.repos.value?.name
+    }
 
-
-        binding.button.setOnClickListener {
-            findNavController().navigate(RepositoriesListFragmentDirections.actionRepositoriesListFragmentToLanguagesInfoFragment())
-        }
+    override fun chooseRepo(repo: RepositoryInfo) {
+        Log.d("Repository", "Wybrane repozytorium: ${repo.name}")
+        val bundle = Bundle()
+        bundle.putString("repoName", repo.name)
+        findNavController().navigate(R.id.action_repositoriesListFragment_to_languagesInfoFragment, bundle)
     }
 }

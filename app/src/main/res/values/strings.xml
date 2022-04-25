@@ -6,4 +6,5 @@
     <string name="instruction">Projekt wykonany na potrzebę zadania rekrutacyjnego dla Allegro przez Łukasza Kozieja. W poniższym polu użytkownik wpisuje nazwę użytkonika GitHuba, a następnie zatwierdza przyciskiem "OK". Wyświetlony wtedy zostanie ekran z listą nazw repozytorium publicznych podanego użytkonika. Aby uzyskać informację o językach użytych w wybranym repozytorium należy kliknąć interesujące nas repozytorium - zostaniemy wtedy przeniesieni na kolejny ekran z interesującą nas informacją.</string>
     <string name="lista_repozytoriow_uzytkonika">Lista repozytoriów użytkownika:</string>
     <string name="szczegoly_repozytorium">Szczegóły repozytorium:</string>
+    <string name="username">Username</string>
 </resources>
