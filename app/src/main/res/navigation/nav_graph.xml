@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/chooseNameFragment">
+
+    <fragment
+        android:id="@+id/chooseNameFragment"
+        android:name="com.example.allegrointernmobile.view.ChooseNameFragment"
+        android:label="fragment_choose_name"
+        tools:layout="@layout/fragment_choose_name" >
+        <action
+            android:id="@+id/action_chooseNameFragment_to_repositoriesListFragment"
+            app:destination="@id/repositoriesListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/repositoriesListFragment"
+        android:name="com.example.allegrointernmobile.view.RepositoriesListFragment"
+        android:label="fragment_repositories_list"
+        tools:layout="@layout/fragment_repositories_list" >
+        <action
+            android:id="@+id/action_repositoriesListFragment_to_languagesInfoFragment"
+            app:destination="@id/languagesInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/languagesInfoFragment"
+        android:name="com.example.allegrointernmobile.view.LanguagesInfoFragment"
+        android:label="LanguagesInfoFragment" />
+</navigation>
