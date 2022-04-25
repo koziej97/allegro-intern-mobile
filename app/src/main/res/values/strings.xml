@@ -7,4 +7,6 @@
     <string name="lista_repozytoriow_uzytkonika">Lista repozytoriów użytkownika:</string>
     <string name="szczegoly_repozytorium">Szczegóły repozytorium:</string>
     <string name="username">Username</string>
+    <string name="error_message">Nie udało się wczytać listy repozytoriów. Sprawdź czy masz połączenie z internetem</string>
+    <string name="loading">Loading...</string>
 </resources>

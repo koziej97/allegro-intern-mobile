@@ -5,20 +5,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.DialogFragmentNavigatorDestinationBuilder
 import com.example.allegrointernmobile.adapter.ReposItemClickListener
-import com.example.allegrointernmobile.model.GithubApi
-import com.example.allegrointernmobile.model.GithubApiService
+import com.example.allegrointernmobile.model.GithubApiRepositories
 import com.example.allegrointernmobile.model.RepositoryInfo
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
-class SharedViewModel : ViewModel(), ReposItemClickListener {
+class RepositoriesListViewModel : ViewModel(), ReposItemClickListener {
 
-    lateinit var username : String
+    lateinit var userName : String
+
+    private val _status = MutableLiveData<String>()
+    val status: LiveData<String> = _status
 
     private val _repos = MutableLiveData<List<RepositoryInfo>>()
     val repos: LiveData<List<RepositoryInfo>> = _repos
@@ -26,9 +23,11 @@ class SharedViewModel : ViewModel(), ReposItemClickListener {
     fun getRepositories() {
         viewModelScope.launch {
             try {
-                _repos.value = GithubApi.retrofitService.getRepositories(username)
+                _repos.value = GithubApiRepositories.retrofitService.getRepositories(userName)
+                _status.value = "SUCCESS"
                 Log.d("Get Repository", "Success!")
             } catch (e: Exception) {
+                _status.value = "ERROR"
                 Log.e("Get Repository", "$e", )
             }
         }

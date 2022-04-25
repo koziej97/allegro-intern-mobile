@@ -8,8 +8,8 @@
             name="repositoriesListFragment"
             type="com.example.allegrointernmobile.view.RepositoriesListFragment" />
         <variable
-            name="sharedViewModel"
-            type="com.example.allegrointernmobile.viewmodel.SharedViewModel"/>
+            name="repositoriesListViewModel"
+            type="com.example.allegrointernmobile.viewmodel.RepositoriesListViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,11 +27,32 @@
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/username"
-            android:text="@{sharedViewModel.username}"
+            android:text="@{repositoriesListViewModel.userName}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"/>
+
+        <TextView
+            android:id="@+id/error_message"
+            android:text="@string/error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/repositories_recyclerview"
@@ -44,7 +65,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/repository_item"
-            app:listData="@{sharedViewModel.repos}" />
+            app:listData="@{repositoriesListViewModel.repos}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

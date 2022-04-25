@@ -6,28 +6,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.allegrointernmobile.R
 import com.example.allegrointernmobile.adapter.ReposItemClickListener
 import com.example.allegrointernmobile.adapter.RepositoryListAdapter
 import com.example.allegrointernmobile.databinding.FragmentRepositoriesListBinding
 import com.example.allegrointernmobile.model.RepositoryInfo
-import com.example.allegrointernmobile.viewmodel.SharedViewModel
+import com.example.allegrointernmobile.viewmodel.RepositoriesListViewModel
+
 
 class RepositoriesListFragment : Fragment(), ReposItemClickListener {
 
     private var _binding: FragmentRepositoriesListBinding? = null
     private val binding get() = _binding!!
-    private val mSharedViewModel: SharedViewModel by activityViewModels()
+    private val viewModel: RepositoriesListViewModel by viewModels()
     lateinit var mAdapter : RepositoryListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+            viewModel.userName = arguments?.getString("userName").toString()
         }
+        viewModel.getRepositories()
     }
 
     override fun onCreateView(
@@ -39,7 +42,7 @@ class RepositoriesListFragment : Fragment(), ReposItemClickListener {
         mAdapter = RepositoryListAdapter(this)
 
         binding.lifecycleOwner = this
-        binding.sharedViewModel = mSharedViewModel
+        binding.repositoriesListViewModel = viewModel
         binding.repositoriesRecyclerview.adapter = mAdapter
 
         return binding.root
@@ -52,12 +55,28 @@ class RepositoriesListFragment : Fragment(), ReposItemClickListener {
             repositoriesListFragment = this@RepositoriesListFragment
         }
 
+        binding.progressBar.visibility = View.VISIBLE
+        binding.errorMessage.visibility = View.GONE
+
+        val nameObserver = Observer<String> { viewModel.status
+            if (viewModel.status.value == "SUCCESS"){
+                binding.progressBar.visibility = View.GONE
+            }
+            else {
+                binding.progressBar.visibility = View.GONE
+                binding.errorMessage.visibility = View.VISIBLE
+            }
+        }
+
+        viewModel.status.observe(this, nameObserver)
+
     }
 
     override fun chooseRepo(repo: RepositoryInfo) {
         Log.d("Repository", "Wybrane repozytorium: ${repo.name}")
         val bundle = Bundle()
         bundle.putString("repoName", repo.name)
+        bundle.putString("userName", viewModel.userName)
         findNavController().navigate(R.id.action_repositoriesListFragment_to_languagesInfoFragment, bundle)
     }
 }
