@@ -3,10 +3,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ok">OK</string>
     <string name="allegro">allegro</string>
-    <string name="instruction">Projekt wykonany na potrzebę zadania rekrutacyjnego dla Allegro przez Łukasza Kozieja. W poniższym polu użytkownik wpisuje nazwę użytkonika GitHuba, a następnie zatwierdza przyciskiem "OK". Wyświetlony wtedy zostanie ekran z listą nazw repozytorium publicznych podanego użytkonika. Aby uzyskać informację o językach użytych w wybranym repozytorium należy kliknąć interesujące nas repozytorium - zostaniemy wtedy przeniesieni na kolejny ekran z interesującą nas informacją.</string>
+    <string name="instruction">Projekt wykonany na potrzebę zadania rekrutacyjnego dla Allegro przez Łukasza Kozieja. W poniższym polu użytkownik wpisuje nazwę użytkonika GitHuba, a następnie zatwierdza przyciskiem "OK". Wyświetlony wtedy zostanie ekran z listą nazw repozytoriów publicznych podanego użytkownika. Aby uzyskać informację o językach programowania użytych w wybranym repozytorium należy kliknąć przycisk z interesującym nas repozytorium - zostaniemy wtedy przeniesieni na kolejny ekran, gdzie zostanie wyświetlona interesująca nas informacja.</string>
     <string name="lista_repozytoriow_uzytkonika">Lista repozytoriów użytkownika:</string>
     <string name="szczegoly_repozytorium">Szczegóły repozytorium:</string>
     <string name="username">Username</string>
     <string name="error_message">Nie udało się wczytać listy repozytoriów. Sprawdź czy masz połączenie z internetem</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
 </resources>

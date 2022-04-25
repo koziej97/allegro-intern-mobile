@@ -9,9 +9,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import com.example.allegrointernmobile.R
 import com.example.allegrointernmobile.databinding.FragmentLanguagesInfoBinding
 import com.example.allegrointernmobile.model.GithubApiLanguages
-import com.example.allegrointernmobile.viewmodel.GithubApiService
 import com.example.allegrointernmobile.viewmodel.LanguagesInfoViewModel
 
 class LanguagesInfoFragment : Fragment() {
@@ -26,6 +26,7 @@ class LanguagesInfoFragment : Fragment() {
             viewModel.repoName = arguments?.getString("repoName").toString()
             viewModel.userName = arguments?.getString("userName").toString()
         }
+        viewModel.getLanguages()
     }
 
     override fun onCreateView(
@@ -47,11 +48,18 @@ class LanguagesInfoFragment : Fragment() {
 
         binding.progressBar.visibility = View.VISIBLE
 
-        viewModel.getLanguages()
-
-        val nameObserver = Observer<GithubApiService> { viewModel.languages
-            binding.listOfLanguages.text = viewModel.languages.value.toString()
-            binding.progressBar.visibility = View.GONE
+        val nameObserver = Observer<String> { viewModel.status
+            println(viewModel.status.value)
+            if (viewModel.status.value == "SUCCESS"){
+                binding.progressBar.visibility = View.GONE
+                binding.listOfLanguages.text = viewModel.listOfLanguages
+                binding.listOfLanguages.visibility = View.VISIBLE
+            }
+            else {
+                binding.progressBar.visibility = View.GONE
+                binding.listOfLanguages.text = resources.getString(R.string.error_message)
+                binding.listOfLanguages.visibility = View.VISIBLE
+            }
         }
 
         viewModel.status.observe(this, nameObserver)

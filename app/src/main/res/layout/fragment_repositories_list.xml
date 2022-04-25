@@ -22,15 +22,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lista_repozytoriow_uzytkonika"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/username"
-            android:text="@{repositoriesListViewModel.userName}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{repositoriesListViewModel.userName}"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ProgressBar
