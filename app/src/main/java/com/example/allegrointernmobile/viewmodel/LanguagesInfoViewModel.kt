@@ -44,6 +44,7 @@ class LanguagesInfoViewModel : ViewModel() {
                     val value = tutorialMap[name]
                     listOfLanguages += "\n $name : $value bajtów"
                 }
+
                 _status.value = "SUCCESS"
 
             } catch (e: Exception) {

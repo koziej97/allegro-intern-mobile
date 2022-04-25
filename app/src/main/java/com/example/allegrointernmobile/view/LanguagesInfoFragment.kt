@@ -52,12 +52,18 @@ class LanguagesInfoFragment : Fragment() {
             println(viewModel.status.value)
             if (viewModel.status.value == "SUCCESS"){
                 binding.progressBar.visibility = View.GONE
-                binding.listOfLanguages.text = viewModel.listOfLanguages
+
+                if (viewModel.listOfLanguages == ""){
+                    binding.listOfLanguages.text = resources.getString(R.string.empty_response_message)
+                }
+                else {
+                    binding.listOfLanguages.text = viewModel.listOfLanguages
+                }
                 binding.listOfLanguages.visibility = View.VISIBLE
             }
             else {
                 binding.progressBar.visibility = View.GONE
-                binding.listOfLanguages.text = resources.getString(R.string.error_message)
+                binding.listOfLanguages.text = resources.getString(R.string.error_message_languages)
                 binding.listOfLanguages.visibility = View.VISIBLE
             }
         }
