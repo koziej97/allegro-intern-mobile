@@ -7,6 +7,9 @@
         <variable
             name="chooseNameFragment"
             type="com.example.allegrointernmobile.view.ChooseNameFragment" />
+        <variable
+            name="sharedViewModel"
+            type="com.example.allegrointernmobile.viewmodel.SharedViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

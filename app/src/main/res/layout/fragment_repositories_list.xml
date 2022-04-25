@@ -7,6 +7,9 @@
         <variable
             name="repositoriesListFragment"
             type="com.example.allegrointernmobile.view.RepositoriesListFragment" />
+        <variable
+            name="sharedViewModel"
+            type="com.example.allegrointernmobile.viewmodel.SharedViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,9 +26,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="XYZ"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

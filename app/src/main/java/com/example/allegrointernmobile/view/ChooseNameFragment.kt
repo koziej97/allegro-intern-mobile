@@ -5,13 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.allegrointernmobile.databinding.FragmentChooseNameBinding
+import com.example.allegrointernmobile.viewmodel.SharedViewModel
 
 class ChooseNameFragment : Fragment() {
 
     private var _binding: FragmentChooseNameBinding? = null
     private val binding get() = _binding!!
+    private val mSharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +35,13 @@ class ChooseNameFragment : Fragment() {
 
         _binding?.apply {
             chooseNameFragment = this@ChooseNameFragment
+            sharedViewModel = mSharedViewModel
         }
 
         binding.button.setOnClickListener {
+            mSharedViewModel.username = binding.editText.text.toString()
+            mSharedViewModel.getRepositories()
+
             findNavController().navigate(ChooseNameFragmentDirections.actionChooseNameFragmentToRepositoriesListFragment())
         }
     }
