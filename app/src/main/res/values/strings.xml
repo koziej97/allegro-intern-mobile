@@ -13,4 +13,5 @@
     <string name="error_message_languages">Nie udało się pobrać informacji o wykorzystanych w projekcie językach programowania. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
     <string name="empty_response_message">Brak informacji od serwera o wykorzystanych językach programowania.</string>
     <string name="error404">Nie znaleziono użytkownika o nazwie: %1$s. Upewnij się, że poprawnie wpisałeś nazwę użytkownika.</string>
+    <string name="error403">Przekroczono limit zapytań dla API Githuba. Ponowny odczyt danych możliwy jest dopiero na następny dzień.</string>
 </resources>

@@ -10,6 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.allegrointernmobile.R
 import com.example.allegrointernmobile.adapter.ReposItemClickListener
 import com.example.allegrointernmobile.adapter.RepositoryListAdapter
@@ -24,6 +26,8 @@ class RepositoriesListFragment : Fragment(), ReposItemClickListener {
     private val binding get() = _binding!!
     private val viewModel: RepositoriesListViewModel by viewModels()
     lateinit var mAdapter : RepositoryListAdapter
+
+    var isLoading = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +49,8 @@ class RepositoriesListFragment : Fragment(), ReposItemClickListener {
         binding.repositoriesListViewModel = viewModel
         binding.repositoriesRecyclerview.adapter = mAdapter
 
+        initScrollListener()
+
         return binding.root
     }
 
@@ -59,13 +65,13 @@ class RepositoriesListFragment : Fragment(), ReposItemClickListener {
         binding.errorMessage.visibility = View.GONE
 
         val nameObserver = Observer<String> { viewModel.status
-            if (viewModel.status.value == "SUCCESS"){
-                binding.progressBar.visibility = View.GONE
-            }
-            else {
-                setErrorMessage(viewModel)
-                binding.progressBar.visibility = View.GONE
-                binding.errorMessage.visibility = View.VISIBLE
+            when (viewModel.status.value) {
+                "SUCCESS" -> binding.progressBar.visibility = View.GONE
+                "ERROR" -> {
+                    setErrorMessage(viewModel)
+                    binding.progressBar.visibility = View.GONE
+                    binding.errorMessage.visibility = View.VISIBLE
+                }
             }
         }
 
@@ -81,11 +87,41 @@ class RepositoriesListFragment : Fragment(), ReposItemClickListener {
     }
 
     private fun setErrorMessage(viewModel: RepositoriesListViewModel) {
-        if (viewModel.errorCode.value == 404){
-            binding.errorMessage.text = getString(R.string.error404, viewModel.userName)
-        }
-        else {
-            binding.errorMessage.text = getString(R.string.error_message)
+        when (viewModel.errorCode.value) {
+            404 -> binding.errorMessage.text = getString(R.string.error404, viewModel.userName)
+            403 -> binding.errorMessage.text = getString(R.string.error403)
+            else -> binding.errorMessage.text = getString(R.string.error_message)
         }
     }
+
+    private fun initScrollListener() {
+        binding.repositoriesRecyclerview.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager?
+                    if (!isLoading) {
+                        if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == mAdapter.itemCount - 1) {
+                            Log.d("SCROLL", "SCROLLED DOWN")
+                            loadMoreData()
+                            isLoading = true
+                        }
+                    }
+                }
+            }
+        )
+    }
+
+    private fun loadMoreData(){
+        viewModel.increaseRepositoryPage()
+        viewModel.getRepositories()
+        val nameObserver = Observer<String> { viewModel.status
+            if (viewModel.status.value == "SUCCESS"){
+                mAdapter.refreshRepositoriesList()
+                isLoading = false
+            }
+        }
+        viewModel.status.observe(viewLifecycleOwner, nameObserver)
+    }
+
 }

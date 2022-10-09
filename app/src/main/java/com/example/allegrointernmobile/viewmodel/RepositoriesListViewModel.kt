@@ -18,16 +18,32 @@ class RepositoriesListViewModel : ViewModel(), ReposItemClickListener {
     private val _status = MutableLiveData<String>()
     val status: LiveData<String> = _status
 
-    private val _repos = MutableLiveData<List<RepositoryInfo>>()
-    val repos: LiveData<List<RepositoryInfo>> = _repos
+    private var _reposTempList : List<RepositoryInfo> = emptyList()
+    private var _reposList : MutableList<RepositoryInfo?> = mutableListOf()
+
+    private val _repos = MutableLiveData<List<RepositoryInfo?>>()
+    val repos: LiveData<List<RepositoryInfo?>> = _repos
 
     private val _errorCode = MutableLiveData<Int>()
     val errorCode: LiveData<Int> = _errorCode
 
+    private var repositoryPage: Int = 1
+
+    fun increaseRepositoryPage(){
+        repositoryPage++
+    }
+
     fun getRepositories() {
+        _status.value = "LOADING"
         viewModelScope.launch {
             try {
-                _repos.value = GithubApiRepositories.retrofitService.getRepositories(userName, 1)
+                _reposList.remove(null)
+                _reposTempList = GithubApiRepositories.retrofitService.getRepositories(userName, repositoryPage)
+                if (_reposTempList.isNotEmpty()) {
+                    _reposList.addAll(_reposTempList)
+                    _reposList.add(null)
+                }
+                _repos.value = _reposList
                 _status.value = "SUCCESS"
                 Log.d("Get Repository", "Success!")
             } catch (e: HttpException) {

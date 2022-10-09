@@ -2,17 +2,24 @@ package com.example.allegrointernmobile.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.allegrointernmobile.R
+import com.example.allegrointernmobile.databinding.LoadingItemBinding
 import com.example.allegrointernmobile.databinding.RepositoryItemBinding
 import com.example.allegrointernmobile.model.RepositoryInfo
 
 class RepositoryListAdapter internal constructor(private val mListener: ReposItemClickListener):
-    ListAdapter<RepositoryInfo, RepositoryListAdapter.RepositoryInfoViewHolder>(DiffCallback) {
+    ListAdapter<RepositoryInfo, RecyclerView.ViewHolder>(DiffCallback) {
+
+    private val VIEW_TYPE_ITEM = 0
+    private val VIEW_TYPE_LOADING = 1
 
     class RepositoryInfoViewHolder(
         private var binding: RepositoryItemBinding
@@ -31,7 +38,21 @@ class RepositoryListAdapter internal constructor(private val mListener: ReposIte
                     parent, false
                 )
                 return RepositoryInfoViewHolder(binding)
+            }
+        }
+    }
 
+    class LoadingViewHolder(
+        binding: LoadingItemBinding
+        ) : RecyclerView.ViewHolder(binding.root) {
+        companion object {
+            fun from(parent: ViewGroup): LoadingViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding: LoadingItemBinding = DataBindingUtil.inflate(
+                    layoutInflater, R.layout.loading_item,
+                    parent, false
+                )
+                return LoadingViewHolder(binding)
             }
         }
     }
@@ -50,13 +71,37 @@ class RepositoryListAdapter internal constructor(private val mListener: ReposIte
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RepositoryInfoViewHolder {
-        return RepositoryInfoViewHolder.from(parent)
+    ): RecyclerView.ViewHolder {
+        return if (viewType == VIEW_TYPE_ITEM) {
+            RepositoryInfoViewHolder.from(parent)
+        } else {
+            LoadingViewHolder.from(parent)
+        }
     }
 
-    override fun onBindViewHolder(holder: RepositoryInfoViewHolder, position: Int) {
-        val repository = getItem(position)
-        holder.bind(repository, mListener)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is RepositoryInfoViewHolder) {
+            val repository = getItem(position)
+            holder.bind(repository, mListener)
+        }
+        if (holder is LoadingViewHolder){
+            showLoadingView(holder, position)
+        }
+    }
+
+    private fun showLoadingView(viewHolder: LoadingViewHolder, position: Int) {
+        // Progressbar would be displayed
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        if (getItem(position) == null){
+            return VIEW_TYPE_LOADING
+        }
+        return VIEW_TYPE_ITEM
+    }
+
+    fun refreshRepositoriesList(){
+        notifyDataSetChanged()
     }
 }
 
