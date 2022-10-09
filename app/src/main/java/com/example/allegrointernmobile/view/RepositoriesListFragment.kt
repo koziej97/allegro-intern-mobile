@@ -63,20 +63,29 @@ class RepositoriesListFragment : Fragment(), ReposItemClickListener {
                 binding.progressBar.visibility = View.GONE
             }
             else {
+                setErrorMessage(viewModel)
                 binding.progressBar.visibility = View.GONE
                 binding.errorMessage.visibility = View.VISIBLE
             }
         }
 
-        viewModel.status.observe(this, nameObserver)
+        viewModel.status.observe(viewLifecycleOwner, nameObserver)
 
     }
 
     override fun chooseRepo(repo: RepositoryInfo) {
-        Log.d("Repository", "Wybrane repozytorium: ${repo.name}")
         val bundle = Bundle()
         bundle.putString("repoName", repo.name)
         bundle.putString("userName", viewModel.userName)
         findNavController().navigate(R.id.action_repositoriesListFragment_to_languagesInfoFragment, bundle)
+    }
+
+    private fun setErrorMessage(viewModel: RepositoriesListViewModel) {
+        if (viewModel.errorCode.value == 404){
+            binding.errorMessage.text = getString(R.string.error404, viewModel.userName)
+        }
+        else {
+            binding.errorMessage.text = getString(R.string.error_message)
+        }
     }
 }

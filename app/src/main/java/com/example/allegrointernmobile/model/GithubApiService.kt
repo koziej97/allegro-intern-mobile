@@ -7,6 +7,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.github.com/"
 
@@ -28,7 +29,10 @@ private val retrofitLanguages = Retrofit.Builder()
 
 interface GithubApiService {
     @GET("users/{username}/repos")
-    suspend fun getRepositories(@Path("username") username: String): List<RepositoryInfo>
+    suspend fun getRepositories(
+        @Path("username") username: String,
+        @Query("page") page: Int
+    ): List<RepositoryInfo>
 
     @GET("repos/{username}/{repoName}/languages")
     suspend fun getLanguages(

@@ -61,5 +61,5 @@ class RepositoryListAdapter internal constructor(private val mListener: ReposIte
 }
 
 interface ReposItemClickListener {
-    fun chooseRepo(repo : RepositoryInfo) {Log.d("COKOLWIEK", repo.name)}
+    fun chooseRepo(repo : RepositoryInfo) {Log.d("Repository", "Chosen repository: " + repo.name)}
 }

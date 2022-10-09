@@ -33,26 +33,26 @@
 
                 <androidx.appcompat.widget.AppCompatCheckedTextView
                     android:id="@+id/textView2"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
                     android:text="@string/szczegoly_repozytorium"
                     android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatCheckedTextView
                     android:id="@+id/repoName"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingRight="20dp"
-                    android:textSize="16sp"
-                    android:maxLines="2"
+                    android:layout_marginTop="5dp"
                     android:ellipsize="end"
-                    android:layout_marginLeft="5dp"
+                    android:maxLines="2"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView2"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="20dp"
                     android:text="@string/lista_jezykow_info"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -82,12 +82,15 @@
                 <androidx.appcompat.widget.AppCompatCheckedTextView
                     android:id="@+id/list_of_languages"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dp"
+                    android:layout_height="0dp"
+                    android:paddingHorizontal="20dp"
                     android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/languages_info"/>
+                    app:layout_constraintTop_toBottomOf="@id/languages_info" />
 
                 <ProgressBar
                     android:id="@+id/progress_bar"

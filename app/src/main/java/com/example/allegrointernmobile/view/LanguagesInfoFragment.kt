@@ -68,7 +68,7 @@ class LanguagesInfoFragment : Fragment() {
             }
         }
 
-        viewModel.status.observe(this, nameObserver)
+        viewModel.status.observe(viewLifecycleOwner, nameObserver)
 
 
     }

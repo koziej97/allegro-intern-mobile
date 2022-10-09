@@ -9,6 +9,7 @@ import com.example.allegrointernmobile.adapter.ReposItemClickListener
 import com.example.allegrointernmobile.model.GithubApiRepositories
 import com.example.allegrointernmobile.model.RepositoryInfo
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class RepositoriesListViewModel : ViewModel(), ReposItemClickListener {
 
@@ -20,15 +21,19 @@ class RepositoriesListViewModel : ViewModel(), ReposItemClickListener {
     private val _repos = MutableLiveData<List<RepositoryInfo>>()
     val repos: LiveData<List<RepositoryInfo>> = _repos
 
+    private val _errorCode = MutableLiveData<Int>()
+    val errorCode: LiveData<Int> = _errorCode
+
     fun getRepositories() {
         viewModelScope.launch {
             try {
-                _repos.value = GithubApiRepositories.retrofitService.getRepositories(userName)
+                _repos.value = GithubApiRepositories.retrofitService.getRepositories(userName, 1)
                 _status.value = "SUCCESS"
                 Log.d("Get Repository", "Success!")
-            } catch (e: Exception) {
+            } catch (e: HttpException) {
+                _errorCode.value = e.code()
                 _status.value = "ERROR"
-                Log.e("Get Repository", "$e", )
+                Log.e("Get Repository", "$e")
             }
         }
     }

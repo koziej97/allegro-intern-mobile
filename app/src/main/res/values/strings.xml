@@ -7,9 +7,10 @@
     <string name="lista_repozytoriow_uzytkonika">Lista repozytoriów użytkownika:</string>
     <string name="szczegoly_repozytorium">Szczegóły repozytorium:</string>
     <string name="username">Username</string>
-    <string name="error_message">Nie udało się wczytać listy repozytoriów. Sprawdź czy masz połączenie z internetem i spróbuj ponownie</string>
+    <string name="error_message">Nie udało się wczytać listy repozytoriów. Sprawdź czy masz połączenie z internetem i spróbuj ponownie.</string>
     <string name="loading">Loading…</string>
     <string name="lista_jezykow_info">Lista języków programowania wraz z liczbą bajtów kodu napisanego w każdym z nich:</string>
     <string name="error_message_languages">Nie udało się pobrać informacji o wykorzystanych w projekcie językach programowania. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
     <string name="empty_response_message">Brak informacji od serwera o wykorzystanych językach programowania.</string>
+    <string name="error404">Nie znaleziono użytkownika o nazwie: %1$s. Upewnij się, że poprawnie wpisałeś nazwę użytkownika.</string>
 </resources>

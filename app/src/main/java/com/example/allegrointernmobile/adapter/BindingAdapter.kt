@@ -1,8 +1,5 @@
 package com.example.allegrointernmobile.adapter
 
-import android.view.View
-import android.widget.ImageView
-import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.allegrointernmobile.model.RepositoryInfo
