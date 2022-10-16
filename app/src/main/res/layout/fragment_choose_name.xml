@@ -18,15 +18,27 @@
         tools:context=".view.ChooseNameFragment">
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/appCompatCheckedTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/instruction"
-            android:paddingHorizontal="30dp"
             android:justificationMode="inter_word"
+            android:paddingHorizontal="30dp"
+            android:text="@string/instruction"
             app:layout_constraintBottom_toTopOf="@+id/editTextLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:justificationMode="inter_word"
+            android:paddingHorizontal="30dp"
+            android:text="@string/type_user"
+            app:layout_constraintBottom_toTopOf="@+id/editTextLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatCheckedTextView" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextLayout"

@@ -41,7 +41,8 @@ class LanguagesInfoViewModel : ViewModel() {
                 // GETTING DATA FROM JSON AND PUTTING IN ORDER IN STRING
                 val allKeys = tutorialMap.keys
                 for (name in allKeys){
-                    val value = tutorialMap[name]
+                    var value = tutorialMap[name]
+                    value = "%.0f".format(value)
                     listOfLanguages += "\n $name : $value bajtów"
                 }
 

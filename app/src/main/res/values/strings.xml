@@ -3,7 +3,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ok">OK</string>
     <string name="allegro">allegro</string>
-    <string name="instruction">Projekt wykonany na potrzebę zadania rekrutacyjnego dla Allegro przez Łukasza Kozieja. W poniższym polu użytkownik wpisuje nazwę użytkonika GitHuba, a następnie zatwierdza przyciskiem "OK". Wyświetlony wtedy zostanie ekran z listą nazw repozytoriów publicznych podanego użytkownika. Aby uzyskać informację o językach programowania użytych w wybranym repozytorium należy kliknąć przycisk z interesującym nas repozytorium - zostaniemy wtedy przeniesieni na kolejny ekran, gdzie zostanie wyświetlona interesująca nas informacja.</string>
+    <string name="instruction">Projekt wykonany na potrzebę zadania rekrutacyjnego dla Allegro przez Łukasza Kozieja. Aplikacja zwraca listę publicznych repozytoriów podanego użytkownika serwisu GitHub, a następnie daje możliwość sprawdzenia języków programowania użytych w wybranym repozytorium wraz z liczbą bajtów kodu napisanego w każdym z nich.</string>
+    <string name="type_user">W poniższym polu wprowadź nazwę użytkownika:</string>
     <string name="lista_repozytoriow_uzytkonika">Lista repozytoriów użytkownika:</string>
     <string name="szczegoly_repozytorium">Szczegóły repozytorium:</string>
     <string name="username">Username</string>
