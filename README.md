@@ -2,7 +2,7 @@
 
 Projekt wykonany na potrzeby zadania rekrutacyjnego na stanowisko Intern - Mobile Software Engineer dla Allegro. Wykonałem go w całości w Kotlinie za pomocą IDE Android Studio.
 
-# DEMO
+# Demo:
 ![](demo.gif)
 
 ## Uruchomienie aplikacji:
