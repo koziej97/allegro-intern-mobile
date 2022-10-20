@@ -5,7 +5,7 @@ Projekt wykonany na potrzeby zadania rekrutacyjnego na stanowisko Intern - Mobil
 ## Cel zadania:
 Stwórz aplikację wyświetlającą listę języków programowania wykorzystanych w repozytoriach danego użytkownika GitHub. Aplikacja powinna zawierać ekran listy repozytoriów oraz osobny ekran, w którym wyświetlone zostaną szczegóły wybranego repozytorium, tj. informacja jakie języki są wykorzystane oraz liczba bajtów kodu napisanego w każdym z tych języków.
 
-# Demo:
+## Demo:
 ![](demo.gif)
 
 ## Uruchomienie aplikacji:
