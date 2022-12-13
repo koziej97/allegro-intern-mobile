@@ -5,14 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.allegrointernmobile.R
-import com.example.allegrointernmobile.model.GithubApiLanguages
+import com.example.allegrointernmobile.model.githubApi.GithubApiLanguages
 import kotlinx.coroutines.launch
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import retrofit2.Response
-import retrofit2.Retrofit
-import javax.security.auth.login.LoginException
 
 
 class LanguagesInfoViewModel : ViewModel() {
@@ -21,7 +17,6 @@ class LanguagesInfoViewModel : ViewModel() {
     val status: LiveData<String> = _status
 
     private val _languages = MutableLiveData<String>()
-    val languages: MutableLiveData<String> = _languages
 
     lateinit var repoName : String
     lateinit var userName : String

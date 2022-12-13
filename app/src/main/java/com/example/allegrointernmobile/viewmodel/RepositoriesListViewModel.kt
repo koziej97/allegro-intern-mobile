@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.allegrointernmobile.adapter.ReposItemClickListener
-import com.example.allegrointernmobile.model.GithubApiRepositories
-import com.example.allegrointernmobile.model.RepositoryInfo
+import com.example.allegrointernmobile.model.githubApi.GithubApiRepositories
+import com.example.allegrointernmobile.model.dao.RepositoryInfo
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 

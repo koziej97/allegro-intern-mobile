@@ -7,7 +7,7 @@
     <data>
         <variable
             name="repo"
-            type="com.example.allegrointernmobile.model.RepositoryInfo" />
+            type="com.example.allegrointernmobile.model.dao.RepositoryInfo" />
         <variable
             name="clickListener"
             type="com.example.allegrointernmobile.adapter.ReposItemClickListener" />

@@ -1,4 +1,4 @@
-package com.example.allegrointernmobile.model
+package com.example.allegrointernmobile.model.dao
 
 data class RepositoryInfo (
     val name: String

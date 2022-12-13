@@ -2,18 +2,15 @@ package com.example.allegrointernmobile.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.allegrointernmobile.R
 import com.example.allegrointernmobile.databinding.LoadingItemBinding
 import com.example.allegrointernmobile.databinding.RepositoryItemBinding
-import com.example.allegrointernmobile.model.RepositoryInfo
+import com.example.allegrointernmobile.model.dao.RepositoryInfo
 
 class RepositoryListAdapter internal constructor(private val mListener: ReposItemClickListener):
     ListAdapter<RepositoryInfo, RecyclerView.ViewHolder>(DiffCallback) {

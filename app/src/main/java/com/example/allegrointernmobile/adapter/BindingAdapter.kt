@@ -2,7 +2,7 @@ package com.example.allegrointernmobile.adapter
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.allegrointernmobile.model.RepositoryInfo
+import com.example.allegrointernmobile.model.dao.RepositoryInfo
 
 /**
  * Updates the data shown in the [RecyclerView].
